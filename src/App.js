@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import  Tmdb from './Api'
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [useList,setUseList] = useState([])
+
+  useEffect(()=>{
+    const loadAll = async() =>{
+      let list = await Tmdb.getHomeList()
+      setUseList(list)
+      console.log(list)
+    }
+
+    loadAll()
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        useList.map((e,index) => (
+          <p>{e.slug}</p>
+        ))
+      }
     </div>
   );
 }
