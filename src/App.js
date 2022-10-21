@@ -1,6 +1,8 @@
 import './App.css';
 import  Tmdb from './Api'
 import { useEffect, useState } from 'react';
+import { MovieRow } from './components/MovieRow';
+import { Global } from './global';
 
 function App() {
 
@@ -19,9 +21,10 @@ function App() {
     <div className="App">
       {
         useList.map((e,index) => (
-          <p>{e.slug}</p>
+          <MovieRow key={index} title={e.title} content={e.items} />
         ))
       }
+      <Global />
     </div>
   );
 }
