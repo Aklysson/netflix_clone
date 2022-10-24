@@ -13,7 +13,7 @@ export default {
         return [
             {
                 slug: 'originals',
-                title: 'Originais da Netlfix',
+                title: 'Originais da Netflix',
                 items: await basicFetch(`/discover/tv?with_network=213&language=pt-BR&api_key=${API_KEY}`)
             },
             {
@@ -55,5 +55,8 @@ export default {
 
             },
         ]
-    }
+    },
+        getMovie: async(id,type) => {
+            fetch(`${API_BASE}${API_KEY}`)
+        },
 }
