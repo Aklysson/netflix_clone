@@ -14,12 +14,16 @@ function App() {
     const loadAll = async() =>{
       let list = await Tmdb.getHomeList()
       setUseList(list)
+
+
       let filtedlist = list.filter(i=>i.slug === 'originals')
       let randomChosen = Math.floor(Math.random() * (filtedlist[0].items.results.length - 1))
       let choosenOne = filtedlist[0].items.results[randomChosen]
-      setFeatureData(choosenOne);
-      console.log(choosenOne.name)
-      console.log(choosenOne)
+      
+
+      let choosenInfo = await Tmdb.getMovie(choosenOne.id, 'tv')
+      console.log(choosenInfo)
+      setFeatureData(choosenInfo);
 
     }
 

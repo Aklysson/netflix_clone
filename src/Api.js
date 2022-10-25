@@ -57,6 +57,22 @@ export default {
         ]
     },
         getMovie: async(id,type) => {
-            fetch(`${API_BASE}${API_KEY}`)
-        },
+            let info 
+            
+            if(id){
+                switch(type){
+                    case 'movie':
+                         info = await basicFetch(`/movie/${id}?language=pt-BR&api_key=${API_KEY}`)
+                    break;
+                    case 'tv':
+                         info = await basicFetch(`/tv/${id}?language=pt-BR&api_key=${API_KEY}`)
+                    break;
+                    default:
+                    console.log('deu ruim jogador')
+                    break;
+                }
+            }
+
+            return info
+        }
 }
